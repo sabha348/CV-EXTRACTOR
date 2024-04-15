@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CV_EXTRACTOR</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'cv_extractor/css/upload_form.css' %}">
+</head>
+<body>
+    <h1 style="font-size: 5rem; text-align: center;">CV EXTRACTOR</h1> 
+   
+    <form id="upload-form" action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="document">Upload CV:</label>
+        <input type="file" name="document" id="document" multiple required>
+        <button type="submit">Upload</button>
+
+        <!-- Progress Bar and Message -->
+        <div id="progress-bar-container">
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <span id="progress-percentage">0% - Ready to upload</span>
+        </div>
+
+        <!-- Centered Download Button -->
+        <div class="button-container">
+            <button id="download-button" onclick="downloadFile()">Download</button>
+        </div>
+    </form>
+</body>
+<script src="{% static 'cv_extractor/js/upload_form.js' %}"></script>
+</html>
